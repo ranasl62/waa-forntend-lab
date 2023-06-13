@@ -1,0 +1,11 @@
+{
+"compileOnSave": true,
+"compilerOptions": {
+    "checkJs": true,
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "resolveJsonModule": true
+
+} 
+
+}
