@@ -27,7 +27,7 @@ const PostDetails = ({
             <Button customButtonClass="back-button" label={"back"} oncClick={backToPosts}></Button>
             <Label customClass="post-details-author" text={author}  ></Label>
             <Label customClass="post-details-title" text={title}  ></Label>
-            <Button customButtonClass="edit-button" label={"edit"}></Button>
+            <Button customButtonClass="edit-button" label={"edit"} oncClick={() => backToPosts("edit", id)}></Button>
             <Button customButtonClass="delete-button" oncClick={deleteHandler} label={"delete"}></Button>
         </div>
     </div>;

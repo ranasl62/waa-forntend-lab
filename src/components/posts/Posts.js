@@ -9,7 +9,7 @@ const Posts = (
 
     const [posts, setPosts] = useState([]);
     const postViewHandler = (id) => {
-        dashPostViewHandler(id);
+        dashPostViewHandler(id, "details");
     }
     useEffect(() => {
 
@@ -25,7 +25,7 @@ const Posts = (
     return <div className="posts-wrapper">
         <div className="wrapper-title">
             <h1 className="posts-title">Posts</h1>
-            <Button customButtonClass="post-create-button" label={"Create"}></Button>
+            <Button customButtonClass="post-create-button" label={"Create"} oncClick={() => dashPostViewHandler(null, "create")}></Button>
         </div>
         <div className="posts">
             {posts.map((post) => <Post {...post} key={post.id} handleOnClick={postViewHandler} />)}
