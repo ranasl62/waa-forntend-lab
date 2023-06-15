@@ -5,11 +5,15 @@ const httpClient = createHttpClient("/posts");
 
 
 const getPostbyId = (id) => {
-    return httpClient.get({ url: `${httpClient.baseUrl}/${id}` }).then(res => console.log(res));
+    return httpClient.get({ url: `${httpClient.baseUrl}/${id}` });
 }
 
 const getPosts = () => {
-    return fetch(httpClient.baseUrl)
+    return httpClient.get({ url: httpClient.baseUrl });
 }
 
-export { getPostbyId, getPosts }; 
+const deletePost = (id) => {
+    return httpClient.delete({ url: `${httpClient.baseUrl}/${id}` });
+}
+
+export { getPostbyId, getPosts, deletePost };

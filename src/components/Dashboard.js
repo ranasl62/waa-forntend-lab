@@ -2,7 +2,6 @@ import { useState } from "react";
 import Posts from "./posts/Posts";
 import PostDetails from "./posts/PostDetails";
 import { getPostbyId } from "../helpers/posts";
-import Label from "./forms/elements/Label";
 
 const Dashboard = () => {
 
@@ -10,7 +9,13 @@ const Dashboard = () => {
     const [post, setPost] = useState(null);
     const postDetailsHandler = (id) => {
 
-        setPost(getPostbyId(id))
+        getPostbyId(id).then(
+            res => {
+                if (res.data.success == true) {
+                    setPost(res.data.data);
+                }
+            }
+        );
         setView("details");
     };
 

@@ -73,8 +73,7 @@
 
 .posts-title{
     color: white;
-    margin-bottom: 64px;
-
+    flex: 1 1 50%
 }
 
 .footer{
@@ -162,4 +161,25 @@
     background-color: var(--primary);
     color: rgb(255, 255, 255);
     border: 1px solid  var(--primary);
+}
+
+.wrapper-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.post-create-button{
+    padding: 4px 12px;
+    border-radius: 4px;
+    background-color: var(--primary);
+    color: rgb(255, 255, 255);
+    border: 1px solid  white;
+}
+
+
+.post-create-button:hover{
+    background-color: var(--primary);
+    border: 1px solid var(--accent);
+    color: white;
+    cursor: pointer;
 }

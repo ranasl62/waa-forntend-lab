@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Post from "./Post";
 import { getPosts } from "../../helpers/posts";
+import Button from "../forms/elements/Button";
 
 const Posts = (
     { dashPostViewHandler }
@@ -14,14 +15,18 @@ const Posts = (
 
         getPosts().then(
             res => {
-                console.log(res);
-                // setPosts(res);
+                if (res.data.success == true) {
+                    setPosts(res.data.data);
+                }
             }
         );
 
     }, []);
     return <div className="posts-wrapper">
-        <h1 className="posts-title">Posts</h1>
+        <div className="wrapper-title">
+            <h1 className="posts-title">Posts</h1>
+            <Button customButtonClass="post-create-button" label={"Create"}></Button>
+        </div>
         <div className="posts">
             {posts.map((post) => <Post {...post} key={post.id} handleOnClick={postViewHandler} />)}
         </div>

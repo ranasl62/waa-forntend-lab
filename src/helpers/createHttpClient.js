@@ -12,7 +12,6 @@ const createHttpClient = (path = "") => {
 
     httpClient.interceptors.request.use(
         (config) => {
-            config.withCredentials = true;
             if (accessToken) {
                 config.headers.Authorization = `Bearer ${accessToken}`;
             }
