@@ -1,13 +1,25 @@
+import { useEffect, useState } from "react";
 import Post from "./Post";
+import { getPosts } from "../../helpers/posts";
 
-import data from "./../../data/data.json";
 const Posts = (
     { dashPostViewHandler }
 ) => {
-    const posts = data.posts;
+
+    const [posts, setPosts] = useState([]);
     const postViewHandler = (id) => {
         dashPostViewHandler(id);
     }
+    useEffect(() => {
+
+        getPosts().then(
+            res => {
+                console.log(res);
+                // setPosts(res);
+            }
+        );
+
+    }, []);
     return <div className="posts-wrapper">
         <h1 className="posts-title">Posts</h1>
         <div className="posts">

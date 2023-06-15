@@ -1,11 +1,15 @@
+import createHttpClient from "./createHttpClient";
 
-import data from "./../data/data.json";
+const httpClient = createHttpClient("/posts");
+
+
+
 const getPostbyId = (id) => {
-    return data?.posts?.find(p => p.id == id);
+    return httpClient.get({ url: `${httpClient.baseUrl}/${id}` }).then(res => console.log(res));
 }
 
-const getPosts = (id) => {
-    return id ? data?.posts?.find(p => p.id == id) : null;
+const getPosts = () => {
+    return fetch(httpClient.baseUrl)
 }
 
-export { getPostbyId, getPosts };
+export { getPostbyId, getPosts }; 
