@@ -3,6 +3,7 @@ import Posts from "./posts/Posts";
 import PostDetails from "./posts/PostDetails";
 import posts from "../helpers/posts";
 import { CreatePostForm, UpdatePostForm } from "./posts/PostForm";
+import PostContext from "../context/PostContext";
 
 const Dashboard = () => {
 
@@ -24,18 +25,20 @@ const Dashboard = () => {
     const backToPosts = (view = "posts", id) => {
         postDetailsHandler(id, view);
     }
-    return <div className="dashboard-wrapper">
-        <header className="header">
-            <h1>Dashboard</h1>
-        </header>
-        {view == "posts" && <Posts dashPostViewHandler={postDetailsHandler} />}
-        {view == "details" && <PostDetails {...post} backToPosts={backToPosts} />}
-        {view == "create" && <CreatePostForm backToPosts={backToPosts} />}
-        {view == "edit" && <UpdatePostForm backToPosts={backToPosts} id={post.id} />}
-        <footer className="footer">
-            <p>&copy; {new Date().getFullYear()} rights reserved by MIU Student Group</p>
-        </footer>
-    </div>;
+    return (<PostContext.Provider value={post?.id}>
+        <div className="dashboard-wrapper">
+            <header className="header">
+                <h1>Dashboard</h1>
+            </header>
+            {view == "posts" && <Posts dashPostViewHandler={postDetailsHandler} />}
+            {view == "details" && <PostDetails {...post} backToPosts={backToPosts} />}
+            {view == "create" && <CreatePostForm backToPosts={backToPosts} />}
+            {view == "edit" && <UpdatePostForm backToPosts={backToPosts} />}
+            <footer className="footer">
+                <p>&copy; {new Date().getFullYear()} rights reserved by MIU Student Group</p>
+            </footer>
+        </div>
+    </PostContext.Provider>);
 }
 
 export default Dashboard;
