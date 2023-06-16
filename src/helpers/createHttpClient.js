@@ -1,8 +1,8 @@
 import axios from 'axios';
 
+const BASE_URL = process.env.REACT_APP_API_URL;
 
-const createHttpClient = (path = "") => {
-    const BASE_URL = process.env.REACT_APP_API_URL + path;
+const createHttpClient = () => {
 
     const httpClient = axios.create();
 
@@ -108,7 +108,6 @@ const createHttpClient = (path = "") => {
         patch,
         delete: deleteReq,
         baseUrl: BASE_URL,
-        path
     };
 };
 

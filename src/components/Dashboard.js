@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Posts from "./posts/Posts";
 import PostDetails from "./posts/PostDetails";
-import { getPostbyId } from "../helpers/posts";
+import posts from "../helpers/posts";
 import { CreatePostForm, UpdatePostForm } from "./posts/PostForm";
 
 const Dashboard = () => {
@@ -10,7 +10,7 @@ const Dashboard = () => {
     const [post, setPost] = useState(null);
     const postDetailsHandler = (id, view = "details") => {
         if (id != null) {
-            getPostbyId(id).then(
+            posts().getPostbyId(id).then(
                 res => {
                     if (res.data.success == true) {
                         setPost(res.data.data);

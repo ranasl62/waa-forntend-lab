@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { createPost, getPostbyId, updatePost } from '../../helpers/posts';
 import Button from '../forms/elements/Button';
+import posts from '../../helpers/posts';
 
 const PostForm = ({ onSubmit, initialPost, backToPosts, id = null }) => {
     const [post, setPost] = useState(initialPost);
@@ -20,7 +20,7 @@ const PostForm = ({ onSubmit, initialPost, backToPosts, id = null }) => {
         <div className='post-form-wrapper'>
             <div className="wrapper-title">
                 <h2 className="posts-title" style={{ color: "black" }}>{id == null ? "Create Post" : "Edit Post"}</h2>
-                <Button customButtonClass="post-create-button" label={"Back"} oncClick={() => backToPosts(id, id ? "details" : "posts")}></Button>
+                <Button customButtonClass="post-create-button" label={"Back"} oncClick={() => backToPosts(id ? "details" : "posts", id)}></Button>
             </div>
             <form className="post-form" onSubmit={handleSubmit}>
                 <div className="form-group">
@@ -55,7 +55,7 @@ const PostForm = ({ onSubmit, initialPost, backToPosts, id = null }) => {
 
 const CreatePostForm = ({ backToPosts }) => {
     const createPostHandler = (post) => {
-        createPost({ userId: 1, post }).then(res => {
+        posts().createPost({ userId: 1, post }).then(res => {
             if (res.data.success == true) {
                 console.log("Updated Successfully");
                 backToPosts();
@@ -80,7 +80,7 @@ const UpdatePostForm = ({ id, backToPosts }) => {
 
     const [post, setPost] = useState({});
     const updatePostHandler = (post) => {
-        updatePost(id, post).then(res => {
+        posts().updatePost(id, post).then(res => {
             if (res.data.success == true) {
                 console.log("Updated Successfully");
                 backToPosts();
@@ -93,7 +93,7 @@ const UpdatePostForm = ({ id, backToPosts }) => {
         });
     };
     useEffect(() => {
-        getPostbyId(id).then(res => {
+        posts().getPostbyId(id).then(res => {
             if (res.data.success == true) {
                 setPost(res.data.data);
             } else {
